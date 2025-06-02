@@ -4,6 +4,10 @@
 
 PixelMind is an advanced text-to-image encryption system designed to transform sensitive text files into innocent-looking images and secure PDF documents. This innovative application provides a powerful and user-friendly method to protect confidential information through unique steganography-inspired encryption techniques.
 
+## 🚀 Live Demonstration
+
+[![Live Demo](https://img.shields.io/badge/Live-Demo-success?style=for-the-badge)](https://tripai.pythonanywhere.com/)
+
 ## ✨ Key Features
 
 - **Text-to-Image Encryption**: Seamlessly convert text files into encrypted images
