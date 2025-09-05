@@ -31,13 +31,11 @@ Before installation, ensure you have the following technologies installed:
   python --version
   ```
 
-#### 2. MongoDB
-- Version: 4.4+ recommended
-- Download: [MongoDB Official Website](https://www.mongodb.com/try/download/community)
-- Installation Steps:
-  - Windows: Download and run the MongoDB installer
-  - macOS: Use Homebrew `brew tap mongodb/brew && brew install mongodb-community`
-  - Linux: Follow official MongoDB documentation for your distribution
+#### 2. Firebase Project
+- Create a Firebase project at [Firebase Console](https://console.firebase.google.com/)
+- Enable Firestore Database in your Firebase project
+- Generate a service account key for Firebase Admin SDK
+- Download the service account JSON file (keep it secure)
 
 #### 3. pip (Python Package Manager)
 - Typically installed with Python
@@ -79,20 +77,30 @@ Create a `.env` file in the project root with the following configurations:
 # Flask Secret Key (Use a strong, unique value)
 SECRET_KEY=your_very_secret_and_unique_key
 
-# MongoDB Connection String
-MONGODB_URI=mongodb://localhost:27017/
+# Firebase Configuration (Get from Firebase Console > Project Settings > Service Accounts)
+FIREBASE_TYPE=service_account
+FIREBASE_PROJECT_ID=your_firebase_project_id
+FIREBASE_PRIVATE_KEY_ID=your_private_key_id
+FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nyour_private_key_here\n-----END PRIVATE KEY-----\n"
+FIREBASE_CLIENT_EMAIL=your_service_account_email
+FIREBASE_CLIENT_ID=your_client_id
+FIREBASE_AUTH_URI=https://accounts.google.com/o/oauth2/auth
+FIREBASE_TOKEN_URI=https://oauth2.googleapis.com/token
+FIREBASE_AUTH_PROVIDER_X509_CERT_URL=https://www.googleapis.com/oauth2/v1/certs
+FIREBASE_CLIENT_X509_CERT_URL=your_client_cert_url
+
+# Google OAuth Configuration (Get from Google Cloud Console)
+GOOGLE_CLIENT_ID=your_google_oauth_client_id
+GOOGLE_CLIENT_SECRET=your_google_oauth_client_secret
 
 # Get the Key from Groq cloud - llama3.3-70B-Versatile -- [link](https://console.groq.com/keys)
-#API key
-CHATBOT_API_KEY= your_groq_llama3.3-70B-Versatile_API_Key
-
+CHATBOT_API_KEY=your_groq_llama3.3-70B-Versatile_API_Key
 
 # Default Admin Credentials (Change in production)
-DFAULT_USERNAME=guest
-DFAULT_PASSWORD=guest
+ADMIN_USERNAME=guest
+ADMIN_PASSWORD=guest
 
 API_URL=https://api.groq.com/openai/v1/chat/completions
-
 ```
 
 
@@ -168,4 +176,6 @@ PixelMind/
 - Flask Web Framework
 - Pillow Image Processing
 - PyMuPDF
-- MongoDB
+- Firebase Firestore
+- Google OAuth 2.0
+- Authlib
