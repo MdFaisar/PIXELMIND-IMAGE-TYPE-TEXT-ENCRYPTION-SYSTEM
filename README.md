@@ -6,7 +6,7 @@ PixelMind is an advanced text-to-image encryption system designed to transform s
 
 ## 🚀 Live Demonstration
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-success?style=for-the-badge)](https://pixelminds.pythonanywhere.com/)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-success?style=for-the-badge)](https://pixelmind.pythonanywhere.com/)
 
 ## ✨ Key Features
 
@@ -179,3 +179,4 @@ PixelMind/
 - Firebase Firestore
 - Google OAuth 2.0
 - Authlib
+
