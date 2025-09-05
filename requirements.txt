@@ -3,9 +3,12 @@ fpdf
 PyPDF2
 pdf2image
 pymupdf
-pymongo==4.3.3
+firebase-admin
 dotenv
 flask
 requests
+werkzeug
+authlib
 secrets
 fitz
+
