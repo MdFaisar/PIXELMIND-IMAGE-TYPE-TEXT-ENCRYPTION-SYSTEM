@@ -4,13 +4,9 @@ PyPDF2
 pdf2image
 pymupdf
 firebase-admin
-dotenv
+python-dotenv
 flask
 requests
 werkzeug
 authlib
 pyOpenSSL
-secrets
-fitz
-
-
