@@ -9,6 +9,8 @@ flask
 requests
 werkzeug
 authlib
+pyOpenSSL
 secrets
 fitz
+
 
