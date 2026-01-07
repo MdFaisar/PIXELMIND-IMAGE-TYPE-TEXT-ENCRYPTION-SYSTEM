@@ -149,7 +149,10 @@ def create_app():
         
         # Check if user exists in database
         db = database.get_db()
-        user = db.users.find_one({"email": google_email})
+        users_ref = db.collection("users")
+        query = users_ref.where("email", "==", google_email).limit(1).get()
+        user = query[0].to_dict() if query else None
+
         
         if user:
             # User exists, log them in
@@ -376,3 +379,4 @@ def create_app():
 if __name__ == "__main__":
     app = create_app()
     app.run(debug=True)
+
