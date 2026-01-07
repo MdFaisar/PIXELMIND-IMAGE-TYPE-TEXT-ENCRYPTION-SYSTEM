@@ -1,25 +1,32 @@
 import os
 import sys
+from dotenv import load_dotenv
 
-# Get the absolute path of the project root
+# -----------------------------
+# Project setup
+# -----------------------------
+# Absolute path of the project root
 project_root = os.path.dirname(os.path.abspath(__file__))
 
-# Add the project root and app directory to Python path
+# Add project root and app folder to Python path
 sys.path.insert(0, project_root)
 sys.path.insert(0, os.path.join(project_root, 'app'))
-
-# Set the PYTHONPATH environment variable
 os.environ['PYTHONPATH'] = project_root
 
-# Now import the app
+# Load environment variables from .env
+load_dotenv(os.path.join(project_root, '.env'))
+
+# -----------------------------
+# Import and create Flask app
+# -----------------------------
 from app import create_app
 
-if __name__ == "__main__":
-    # Ensure .env is loaded from the project root
-    from dotenv import load_dotenv
-    load_dotenv(os.path.join(project_root, '.env'))
-    
-    # Create and run the Flask app
-    app = create_app()
+# Create app at module level so Gunicorn can see it
+app = create_app()
 
-    app.run()
+# -----------------------------
+# Run locally
+# -----------------------------
+if __name__ == "__main__":
+    # This runs only when executing "python run.py" locally
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=True)
