@@ -91,7 +91,7 @@ def de_png_to_rgb(image_path, output_file):
 # Encryption process
 def encrypt_file(filepath):
     # Ensure temp and enimg directories exist
-    os.makedirs('temp', exist_ok=True)
+    os.makedirs('tmp', exist_ok=True)
     os.makedirs('enimg', exist_ok=True)
     
     from file_operations import text_to_binary, binary_to_ascii
@@ -99,8 +99,9 @@ def encrypt_file(filepath):
     print(f"Converting text file to binary: {filepath}")
     #text_to_binary(filepath, 'temp/bin_en.txt')
     text_to_binary(filepath, '/tmp/bin_en.txt')
-    print(f"Converting binary to ASCII: temp/bin_en.txt")
-    binary_to_ascii("temp/bin_en.txt", "temp/output_ascii_en.txt")
+    print(f"Converting binary to ASCII: tmp/bin_en.txt")
+    #binary_to_ascii("temp/bin_en.txt", "temp/output_ascii_en.txt")
+    binary_to_ascii("tmp/bin_en.txt", "tmp/output_ascii_en.txt")
     
     # Generate unique filename
     i = 1
@@ -111,30 +112,30 @@ def encrypt_file(filepath):
         img_name = f"enimg/Demo{i}.png"
 
     # Convert ASCII to image
-    print(f"Converting ASCII to image: temp/output_ascii_en.txt -> {img_name}")
-    return ascii_to_rgb("temp/output_ascii_en.txt", img_name)
+    print(f"Converting ASCII to image: tmp/output_ascii_en.txt -> {img_name}")
+    return ascii_to_rgb("tmp/output_ascii_en.txt", img_name)
 
 # Decryption process
 def decrypt_file(filepath):
     # Ensure temp directory exists
-    os.makedirs('temp', exist_ok=True)
+    os.makedirs('tmp', exist_ok=True)
     
     from file_operations import rgb_binary_de, join_lines_with_space, de_bin_to_text, remove_last_letter
     
     print(f"Converting image to RGB values: {filepath}")
-    de_png_to_rgb(filepath, "temp/output_acsii_de.txt")
+    de_png_to_rgb(filepath, "tmp/output_acsii_de.txt")
     
     print("Converting RGB values to binary")
-    rgb_binary_de("temp/output_acsii_de.txt", "temp/bin_de.txt")
+    rgb_binary_de("tmp/output_acsii_de.txt", "tmp/bin_de.txt")
     
     print("Joining binary values with spaces")
-    join_lines_with_space('temp/bin_de.txt', 'temp/sbin_de.txt')
+    join_lines_with_space('tmp/bin_de.txt', 'tmp/sbin_de.txt')
     
     print("Converting binary to text")
-    de_bin_to_text('temp/sbin_de.txt', 'temp/lbin_de.txt')
+    de_bin_to_text('tmp/sbin_de.txt', 'tmp/lbin_de.txt')
     
-    output_txt_file = 'temp/output.txt'
+    output_txt_file = 'tmp/output.txt'
     print(f"Removing last letter and saving to {output_txt_file}")
-    remove_last_letter('temp/lbin_de.txt', output_txt_file)
+    remove_last_letter('tmp/lbin_de.txt', output_txt_file)
     
     return output_txt_file
