@@ -97,7 +97,8 @@ def encrypt_file(filepath):
     from file_operations import text_to_binary, binary_to_ascii
     
     print(f"Converting text file to binary: {filepath}")
-    text_to_binary(filepath, 'temp/bin_en.txt')
+    #text_to_binary(filepath, 'temp/bin_en.txt')
+    text_to_binary(filepath, '/tmp/bin_en.txt')
     print(f"Converting binary to ASCII: temp/bin_en.txt")
     binary_to_ascii("temp/bin_en.txt", "temp/output_ascii_en.txt")
     
