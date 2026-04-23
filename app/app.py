@@ -41,7 +41,8 @@ def create_app():
     )
 
     # Updated upload and directory paths
-    UPLOAD_FOLDER = os.path.join(PROJECT_ROOT, 'uploads')
+    UPLOAD_FOLDER = '/tmp/uploads'
+    os.makedirs(UPLOAD_FOLDER, exist_ok=True)
     ALLOWED_EXTENSIONS_TEXT = {'txt', 'md', 'py', 'c', 'cpp', 'java', 'js', 'html', 'css', 'php', 'swift', 'kotlin', 'go', 'rs', 'sh', 'bat'}
     ALLOWED_EXTENSIONS_IMAGE = {'png', 'jpg', 'jpeg'}
     ALLOWED_EXTENSIONS_PDF = {'pdf'}
@@ -226,7 +227,7 @@ def create_app():
                     encrypted_image = image_operations.encrypt_file(filepath)
                     
                     # Ensure the static/enimg directory exists
-                    static_enimg_dir = os.path.join(PROJECT_ROOT, 'static', 'enimg')
+                    static_enimg_dir = '/tmp/enimg'
                     os.makedirs(static_enimg_dir, exist_ok=True)
                     
                     # Move the image to the static folder with proper path handling
@@ -247,7 +248,7 @@ def create_app():
                         )
             
             # Create PDF from images
-            pdf_output_path = os.path.join(PROJECT_ROOT, 'static', 'encrypted_images.pdf')
+            pdf_output_path = '/tmp/encrypted_images.pdf'
             pdf_operations.create_pdf_from_images(image_paths, pdf_output_path)
             
             return render_template('encrypt_success.html', filename='encrypted_images.pdf')
