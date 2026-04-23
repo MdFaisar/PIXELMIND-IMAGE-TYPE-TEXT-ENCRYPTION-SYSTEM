@@ -166,7 +166,15 @@ def create_app():
             counter = 1
             
             # Make sure username is unique
-            while db.users.find_one({"username": unique_username}):
+            while True:
+                username_query = db.collection("users") \
+                    .where("username", "==", unique_username) \
+                    .limit(1) \
+                    .get()
+                
+                if not username_query:
+                    break  # username is unique
+                
                 unique_username = f"{base_username}{counter}"
                 counter += 1
             
